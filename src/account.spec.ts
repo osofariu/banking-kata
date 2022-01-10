@@ -1,3 +1,5 @@
+import {Account} from "./account";
+
 describe('Account', () => {
 
   let account: Account
