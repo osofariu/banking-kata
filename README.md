@@ -19,6 +19,8 @@ yarn run coverage
 
 ## Kata description
 
+See: https://kata-log.rocks/banking-kata
+
 Write a class BankAccount that offers the following methods:
 * void deposit(int)
 * void withdraw(int)
