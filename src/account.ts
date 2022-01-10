@@ -8,6 +8,8 @@ export class Account {
     return('Date,Amount,Balance\n')
   }
 
-  public deposit(amount: number) {}
+  public deposit(amount: number) {
+    this._ledger.recordDeposit(amount)
+  }
 
 }
