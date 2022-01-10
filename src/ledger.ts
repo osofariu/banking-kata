@@ -1,8 +1,21 @@
 export class Ledger {
 
-  public recordDeposit(amount: number) {}
+  private _transaction: Transaction[] = []
 
-  public get transactions(): [] {
-    return []
+  public recordDeposit(amount: number) {
+    this._transaction.push({amount: amount, type: TransactionType.DEPOSIT})
   }
+
+  public get transactions(): Transaction[] {
+    return this._transaction
+  }
+}
+
+export enum TransactionType {
+  DEPOSIT
+}
+
+export type Transaction = {
+  amount: number,
+  type: TransactionType
 }

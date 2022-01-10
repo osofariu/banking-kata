@@ -1,4 +1,4 @@
-import { Ledger } from "./ledger"
+import {Ledger, TransactionType} from "./ledger"
 
 describe('AccountLedger', () => {
 
