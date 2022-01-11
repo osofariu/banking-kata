@@ -16,14 +16,24 @@ describe('AccountLedger', () => {
     expect(transactions.length).toEqual(0)
   })
 
-  it('on recordTransaction ledger has a record of that transaction', () => {
-    ledger.recordDeposit(12)
+  describe('recordDeposit', () => {
 
-    expect(ledger.transactions.length).toEqual(1)
+    it('with positive amount, ledger has a record of that transaction', () => {
+      ledger.recordDeposit(12)
 
-    let transaction = ledger.transactions[0]
-    expect(transaction.amount).toEqual(12)
-    expect(transaction.type).toEqual(TransactionType.DEPOSIT)
-    expect(transaction.date).toEqual("2018-05-25")
+      expect(ledger.transactions.length).toEqual(1)
+
+      let transaction = ledger.transactions[0]
+      expect(transaction.amount).toEqual(12)
+      expect(transaction.type).toEqual(TransactionType.DEPOSIT)
+      expect(transaction.date).toEqual("2018-05-25")
+    })
+
+    it('with zero amount, ledger does not record deposit', () => {
+      ledger.recordDeposit(0)
+
+      expect(ledger.transactions.length).toEqual(0)
+    })
   })
+
 })
