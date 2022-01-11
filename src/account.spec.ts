@@ -1,12 +1,14 @@
 import {Account} from "./account";
 import createSpyObj = jasmine.createSpyObj;
 import {Ledger, Transaction, TransactionType} from "./ledger";
+const logger = require('npmlog')
 
 describe('Account', () => {
 
   describe('deposit', () => {
     let account: Account
     let mockLedger: jasmine.SpyObj<Ledger>
+    let mockLogger:  any
 
     beforeEach(() => {
       mockLedger = createSpyObj(Ledger, ['recordDeposit'])
@@ -14,9 +16,18 @@ describe('Account', () => {
     })
 
     it('can deposit a positive amount', () => {
+      mockLedger.recordDeposit.and.returnValue({success: true})
       account.deposit(123)
 
       expect(mockLedger.recordDeposit).toHaveBeenCalledOnceWith(123)
+    })
+
+    it('logs an error if the deposit could not be recorded in the ledger', () => {
+      mockLedger.recordDeposit.and.returnValue({success: false, message: "something went wrong"})
+      mockLogger = spyOn(logger, 'error')
+
+      account.deposit(0)
+      expect(mockLogger).toHaveBeenCalledOnceWith("something went wrong")
     })
   })
 
