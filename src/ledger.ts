@@ -1,9 +1,11 @@
-export class Ledger {
+const {DateTime} = require("luxon");
 
+export class Ledger {
   private _transaction: Transaction[] = []
 
   public recordDeposit(amount: number) {
-    this._transaction.push({amount: amount, type: TransactionType.DEPOSIT})
+    const dateNow = DateTime.now().toFormat('yyyy-MM-dd')
+    this._transaction.push({amount: amount, type: TransactionType.DEPOSIT, date: dateNow})
   }
 
   public get transactions(): Transaction[] {
@@ -18,5 +20,5 @@ export enum TransactionType {
 export type Transaction = {
   amount: number,
   type: TransactionType,
-  date?: string
+  date: string
 }
