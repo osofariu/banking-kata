@@ -34,6 +34,13 @@ describe('AccountLedger', () => {
 
       expect(ledger.transactions.length).toEqual(0)
     })
+
+    it("with zero amount, returns an error", () => {
+      let status = ledger.recordDeposit(0)
+
+      expect(status.success).toBeFalse()
+      expect(status.message).toEqual("Amount must be positive")
+    })
   })
 
 })
