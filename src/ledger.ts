@@ -17,5 +17,6 @@ export enum TransactionType {
 
 export type Transaction = {
   amount: number,
-  type: TransactionType
+  type: TransactionType,
+  date?: string
 }
