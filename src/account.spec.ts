@@ -35,6 +35,16 @@ describe('Account', () => {
       expect(account.printStatement()).toEqual('Date,Amount,Balance\n' +
         '2021-05-29,+1234,1234\n')
     })
+
+    it('prints statement with multiple transactions shows correct balance', () => {
+      let account = accountWithTransactions(
+        [{amount: 1234, type: TransactionType.DEPOSIT, date: "2021-05-29"},
+          {amount: 66, type: TransactionType.DEPOSIT, date: "2021-05-30"}])
+
+      expect(account.printStatement()).toEqual('Date,Amount,Balance\n' +
+        '2021-05-29,+1234,1234\n' +
+        '2021-05-30,+66,1300\n')
+    })
   })
 
   function accountWithTransactions(transactions: Transaction[]) {
