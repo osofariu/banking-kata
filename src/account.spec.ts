@@ -21,6 +21,7 @@ describe('Account', () => {
   })
 
   describe('printStatement', () => {
+
     it('printing statement with no transactions, shows header', () => {
       let account = accountWithTransactions([])
 

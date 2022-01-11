@@ -26,5 +26,9 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:osofariu/banking-kata.git"
+  },
+  "dependencies": {
+    "@types/luxon": "^2.0.9",
+    "luxon": "^2.3.0"
   }
 }

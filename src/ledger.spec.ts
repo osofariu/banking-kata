@@ -1,4 +1,5 @@
 import {Ledger, TransactionType} from "./ledger"
+import { Settings } from "luxon";
 
 describe('AccountLedger', () => {
 
@@ -6,6 +7,7 @@ describe('AccountLedger', () => {
 
   beforeEach(() => {
     ledger = new Ledger()
+    Settings.now = () => new Date(2018, 4, 25).valueOf();
   })
 
   it('ledger is empty when no transactions have been deposited', () => {
@@ -22,5 +24,6 @@ describe('AccountLedger', () => {
     let transaction = ledger.transactions[0]
     expect(transaction.amount).toEqual(12)
     expect(transaction.type).toEqual(TransactionType.DEPOSIT)
+    expect(transaction.date).toEqual("2018-05-25")
   })
 })
