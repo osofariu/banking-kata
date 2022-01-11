@@ -1,4 +1,5 @@
 import {Ledger} from "./ledger";
+const logger = require('npmlog')
 
 export class Account {
 
@@ -17,7 +18,9 @@ export class Account {
   }
 
   public deposit(amount: number) {
-    this._ledger.recordDeposit(amount)
+    const status = this._ledger.recordDeposit(amount)
+    if (!status.success) {
+      logger.error(status.message)
+    }
   }
-
 }
